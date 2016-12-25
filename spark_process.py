@@ -55,9 +55,9 @@ result_file.write("input|output|desired_output\n")
 for test_record in song_rdd_test.collect():
     values = [x for x in test_record.split('|')]
     try:
-        test_input = float(values[4])
+        test_input = float(values[4]) / NORMALIZER
         test_output = model.predict([test_input])
-        test_desired_output = float(values[5])
+        test_desired_output = float(values[5]) / NORMALIZER
 
         result_file.write(str(test_input) + '|' + str(test_output) + '|' + str(test_desired_output) + '\n')
     except ValueError:
